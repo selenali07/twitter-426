@@ -1,0 +1,13 @@
+.text-wrap {
+    white-space: normal;
+    word-wrap: anywhere;
+    height: auto;
+}
+
+.modal-background {
+    background: rgba(0, 0, 0, .5)!important
+}
+
+#rtModal {
+    border-radius: 2%;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMP 426 Twitter</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body id = "homepage" class="has-background-grey-darker">
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <p class = "has-text-white is-pulled-right" id ="account"></p>
+                <h3 class="title is-3">
+                    <a class = "has-text-white"href="">
+                        <span class="icon is-large"><img src="kmp.jpeg"></span>
+                        COMP 426 Twitter
+                    </a>
+                </h3>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-three-fifths"> 
+                <h4 class="is-size-4 has-text-left mt-4 has-text-white">Home</h4>
+            </div>
+        </div>
+        <div class="columns is-centered my-2">
+            <div class="textbox column is-three-fifths"> 
+                <textarea onKeyUp="count_it()" maxlength="280" id="tweetBox" class="textarea editor" placeholder="What's Happening?"></textarea>
+                <p class="mt-2 has-text-white">Remaining characters: <span id="count"></span></p>
+                <button class="tweet button is-info is-rounded is-pulled-right my-2 mr-2" id="tweetButton">Tweet</button><br>
+            </div>
+        </div>
+        <div class="columns is-centered my-2">
+            <div class="column is-three-fifths">
+                <div id="feed">
+                        <div class="card my-4 mainCard ${tweet.id}">
+                                <div class="tweet">
+                                    <header class="card-header">
+                                    <h5 id = "author${tweet.id}"class="card-header-title my-4 is-size-5"> <span class = "mr-3"></span> @SelenaLi</h5>
+                                    <div class="card-header-item m-4 is-pulled-right"><button class="button is-ghost is-rounded edit" id="${tweet.id}">Edit</button></div>
+                                    </header>
+                                    <div id="tweetContent${tweet.id}">
+                                        <div class="card-content text-wrap card-content">
+                                            <div class="content text-wrap">
+                                                <p id="content${tweet.id}">Hello, World</p> <br>
+                                                <time id="createdAt${tweet.id}"class="time has-text-weight-semibold">23 Nov 2020<br> 10:52 P.M.</time>
+                                            </div>
+                                        </div>
+                                    <div class = "card-footer">
+                                        <div class="card-footer-item">
+                                            <button id="${tweet.id}" class="button is-info is-light is-rounded reply"><i class="fa fa-reply"> 0</i></button>
+                                        </div>         
+                                        <div class="card-footer-item">
+                                            <button id="${tweet.id}" class="button is-primary is-light is-rounded retweet"><i class="fa fa-retweet"> 1 </i></button>
+                                        </div>
+                                        <div class="card-footer-item">
+                                            <button id="like${tweet.id}" class="button is-danger is-rounded like ${likeButton}"><i id="likeCount${ tweet.id }" class="fa fa-heart"> 3</i></button>
+                                        </div>     
+                                    </div>
+                                    <div class = "card-footer"><div class="card-footer-item"><button id="${tweet.id}" class="button is-danger is-inverted is-rounded viewLikes"> View Likes</button></div></div>
+                                </div> <br>
+                                <div class = "mx-5 is-centered">
+                                <div id="reply"></div>
+                                </div></div>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script> // function for remaining char count
+    var input = document.getElementById('tweetBox');
+    var length = input.getAttribute("maxlength");
+    var count = document.getElementById('count');
+    count.innerHTML = length;
+    input.onkeyup = function () {
+        document.getElementById('count').innerHTML = length - this.value.length
+    };
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="node_modules/axios/dist/axios.min.js"></script>
+    <script type="module" src="twitter.js"></script>
+</body>
+
+</html>
